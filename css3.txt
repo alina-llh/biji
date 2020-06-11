@@ -1,0 +1,448 @@
+**1day17**
+
+**过渡**transition
+
+过渡指当一个元素的属性发生变化，浏览器可以一点一点的将该值变化到目标值
+
+​					过渡一般会用于一些交互效果，用来提升用户体验
+
+**transition 简写属性，简写属性除了duration 和 delay两个属性外其他值没有顺序要求**
+
+transition-property 表示对哪些属性应用过渡
+
+可以设置一个属性 也可以设置多个属性，多个属性之间使用,隔开 也可以使用all，表示所有属性 注意：所有的有具体数值的属性都可以应用过渡效果 
+
+transition-duration 过渡的时间
+
+​		 - 时间单位 s（秒）  ms（毫秒）
+
+​		 - 1s = 1000ms
+
+transition-delay 过渡效果执行的延时
+
+transition-timing-function 
+
+用来指定过渡的时间函数- 指定的就是过渡效果的运行方式
+
+可选值：    ease 默认值，先加速 后减速    linear 匀速运动    ease-in 加速运动    ease-out 减速运动    ease-in-out 先加速，后减速 - 也可以通过贝塞尔曲线来自定义时间函数    cubic-bezier(p1, p2, p3, p4) - steps()可以用来设置一个分步的过渡效果    steps(步数,end/start)    end 默认值，计时结束，才执行    start 计时刚开始就执行 
+
+**动画****animation**
+
+要使用动画，必须先设置关键帧
+
+关键帧
+
+@keyframes test{ /* from指定动画起始位置的样式 */ /* from表示动画的开始位置 0% 和 from是等价的 			*/    from{} /* to指定动画结束位置的样式 */ /* to 表示动画的结束位置 100% 和 to 是等价*/    to{}            } 
+
+将关键帧，应用到当前元素上 
+
+- animation-name 表示当前要应用的动画的名字
+- animation-duration 用来指定动画执行的时间
+- animation-iteration-count 动画执行的次数
+
+- - 可选值：数值 
+  - ​		     infinite 无限执行
+
+- animation-delay 动画开始执行的延时
+- animation-timing-function 指定动画的时间函数，用法和transition是一致的
+- animation-play-state 动画的运行状态
+
+- - 可选值：running 动画运行
+
+- -  	     paused 动画暂停	
+
+- animation-direction 动画执行的方向
+
+可选值：normal 默认值 动画从 from 到 to 运行        reverse 动画反向运行（从 to 到 from）        alternate 开始时从前向后走（from 到 to）回来时会从后向前走（to 到 from）        alternate-reverse 开始时从后完全走（to 到 from）回来时，从前往后走（from 到 to） 				 
+
+- animation-fill-mode 动画的填充方式
+
+可选值：none 默认值，动画执行完毕后，元素会回到原来的位置        forwards 动画执行完毕后，元素会停在结束位置        backwards 动画执行延时时，元素会处在from的状态        both 动画执行延时时，元素会处在from的状态 动画执行完毕后，元素会停在结束位置 
+
+- animation的简写属性：可以通过它来设置所有的动画相关的样式
+
+  同样只有 duration 和 delay 有顺序要求
+
+**变形****transform**
+
+变形，通过变形可以对元素进行平移、放大、缩小旋转等操作
+
+所有的变形效果，都不会影响页面的布局，这是元素的外观发生变化
+
+使用transform 来设置变形的效果
+
+平移 translate
+
+可选值：    translateX 沿着x轴平移        - 正值元素向右移动，负值向左移动（元素没有发生旋转）    translateY 沿着y轴平移        - 正值元素向下移动，负值元素向上移动（元素没有发生旋转）    /* 平移时百分比的单位是相对于自身进行计算的 */        transform: translateX(50%);    translateZ z轴平移        z轴控制的是元素和人眼之间的距离        注意：默认情况下，网页中并没有设置透视效果            也就是没有这种近大远小的效果 
+
+perspective
+
+ 	用来设置视距，默认情况下眼睛和元素的距离 ，通常情况是给HTML设置的
+
+​		-通常视距不宜设置的过小或过大 一般在600-1200之间
+
+旋转rotate
+
+rotateX() 表示元素沿着X轴旋转 单位：deg 表示度数         turn 表示圈     例：transform: rotateX(10turn);     rotateY 表示元素沿着Y轴旋转 rotateZ 表示元素沿着Z轴旋转 
+
+transform-origin 用来指定变形的原点- 和background-position设置方式是一致的
+
+transform-style: preserve-3d; 开启元素的3d变形
+
+默认情况下，元素的变形都属于2d变形，没有应用3d效果
+
+缩放：scale
+
+scaleX 元素X轴缩放 scaleY 元素Y轴缩放- 直接设置倍数即可 scale 元素沿着双方向进行缩放 scaleZ 元素Z轴缩放- 通常情况下Z轴缩放不会产生任何效果 只有在3d效果中，z轴缩放才有意义 
+
+倾斜：skew
+
+skewX 用来设置x轴方向倾斜
+
+skewY 用来设置y轴方向倾斜
+
+**弹型盒**
+
+**flex**
+
+display: flex/inline-flex 用来将一个元素变成弹性容器 
+
+​			当一个元素称为弹性容器后，它的所有子元素都会变成弹性子元素（弹性项）
+
+弹性盒（伸缩盒） flex
+
+​	- 弹性盒是CSS3中新增的一种布局方式 			- 已有的布局方式： 				盒模型 				浮动 				定位 			- 弹性盒是非常非常强大的布局方法， 				通过弹性盒，可以创建出非常灵活的布局 				 			要是使用弹性盒模型，必须先设置弹性容器 
+
+**day19**
+
+flex-direction 用来指定主轴的方向
+
+​						row 默认值，表示主轴方向是从左向右的
+
+​						row-reverse 表示主轴方向是从右向左的
+
+​						column 表示主轴方向是从上向下排列的
+
+​						column-reverse 表示主轴的反向是从下向上排的
+
+flex-wrap 用来指定侧轴的方向
+
+​						nowrap 默认值，元素不会自动换行
+
+​						wrap 表示元素会自动向下（右）换行
+
+​						wrap-reverse 表示元素会自动向上（左）换行
+
+​						
+
+​					flex-flow direction和wrap的简写属性
+
+justify-content 设置元素在主轴上的对齐方式
+
+​						flex-start 默认值 弹性项沿着主轴开始方向对齐
+
+​						flex-end 	弹性项沿着主轴终点对齐
+
+​						center 		弹性项沿着主轴居中对齐
+
+​						space-around 空白空间平均分配到每一个元素的两侧
+
+​						space-evenly 将空白空间分配到元素的一侧
+
+​						space-between 将空白空间分配到两个元素之间
+
+align-items 设置侧轴上元素的对齐方式
+
+​					- 可选值：
+
+​						stretch ，默认值 辅轴上的元素将会被拉伸为相同的高度
+
+​						flex-start 使元素沿着辅轴的开始对齐
+
+​						flex-end 使元素沿着辅轴的底边对齐
+
+​						center 使元素沿着辅轴的中间对齐
+
+align-content 用来设置侧轴上空白空间的分布
+
+​					- 可选值：
+
+​						space-around 空白空间平均分配到每一个元素的两侧
+
+​						space-evenly 将空白空间分配到元素的一侧
+
+​						space-between 将空白空间分配到两个元素之间
+
+align-self 弹性元素的属性- 和 align-items作用一样，值也一样，
+
+​					不同点在于self用于单独设置某个元素的对齐方式
+
+flex-basis 指定元素的基础大小
+
+​						- 如果主轴是横向的，则flex-basis表示的是元素的宽度
+
+​						- 如果主轴是纵向的，则flex-basis表示的是元素的高度
+
+​						- 如果将其值设置为auto，则元素的基础大小会依据width或高度来计算
+
+flex-grow 用来指定弹性项的生长系数（flex-grow: 1;）值是比例；
+
+flex-shrink 元素的缩减系数
+
+​						- 当容器的宽度不够时，浏览器会根据缩减系数来调整元素的大小
+
+​							以使元素不会从容器中溢出
+
+​						- 算法相对复杂一些：
+
+​							会根据缩减系数，和 flex-basis的值综合计算
+
+flex- 是以上三个属性的简写属性
+
+​	- 编写顺序：
+
+​		生长系数 缩减系数 基础大小
+
+​	- 可选值：
+
+​		initial 默认值相当于 flex:0 1 auto
+
+​		auto 相当于 flex: 1 1 auto
+
+​		none 相当于 flex: 0 0 auto
+
+order是弹性项的属性，通过order可以改变弹性项的顺序
+
+**居中方式：**
+
+方式一：将元素的左右外边距设置为auto，元素即可在其包含块中自动水平居中 
+
+​		 margin: 0 auto; 
+
+方式二： 通过绝对定位来设置元素的居中position: absolute; 
+
+四个偏移量都设置为0             top: 0; 	left: 0; 	bottom: 0; 	right: 0; 	margin: auto;  
+
+方式三：变形移动设置居中，如果有父元素需要开启相对定位
+
+​		/* left: 50%;
+
+​		top:50%;
+
+​		transform: translateX(-50%) translateY(-50%);
+
+方式四： 将父元素转换为单元格 
+
+​		/* display: table-cell;
+
+​		vertical-align: middle; */
+
+vertical-align 用来设置子元素的文字和父元素文字的对齐方式
+
+​			但是这个属性在单元格中被用来设置表格中内容的对齐方式
+
+方式五：设置弹性盒
+
+​		display: flex;
+
+​		justify-content: center;（主轴居中）
+
+​		align-items: center;（侧轴居中）
+
+**day20**
+
+**less**
+
+在less中，声明块是可以嵌套，在声明块中，使用&表示上一级选择器
+
+引入 @import' '来引入其他less文件
+
+import 用于将其他文件的内容引入到当前文件中        通过引入，可以实现对样式的分模块管理        在实际开发，可以在不同less中存储不通的代码 例如：有专门存储变量的less文件     专门存储函数的less文件     专门存储某一种样式的less 
+
+Less 是一门 CSS 预处理语言，它扩展了 CSS 语言，增加了变量、Mixin、函数等特性，使 CSS 更易维护和扩展。
+
+​				
+
+Less对CSS进行扩展，提供了很多非常非常强大的功能
+
+变量、函数……，但是LESS这种语言不能被浏览器直接识别
+
+所以LESS必须要经过处理（编译）后才能教给浏览器执行
+
+--变量名 通过CSS定义了一个变量 
+
+例：--c:#ff6700;
+
+calc() 可以用来对多个值进行直接计算
+
+​						+ 加法
+
+​						- 减法
+
+​						* 乘法
+
+​						/ 除法
+
+@a:red;
+
+@my:bar;
+
+@c:color
+
+.@{my}(相当于选中的class或者属性名){                 background-color:@a;(相当于red)                 @c(会被装换为color):yellow； } 
+
+$表示直接引用其他属性的值
+
+&选中上级元素
+
+mixins（函数）,mixins不被用来设置样式，而是用来存储一些代码，方便在其他位置的进行复用,
+
+.border(){ border: 4px red solid; } 使用时 .box3{ .border();(就可以把上面的只套进来) } // 在定义函数时，可以在()中定义形参 // 形参（形式参数） .border(@width:4px, @color:red){ border: @width @color solid; } .box3{ .border(默认是4px red solid);  // 也可是指值    .border(10px yelow);    // 在调用函数时，可以在()中传递实参 // 实参（实际参数） // 传递参数时，必须要注意参数的顺序 // .border(10px,yellow); } 设置一个比bfa深10%的颜色 background-color:darken(#bfa, 10%) ; 颜色变浅10%的颜色 background-color:lighten(#bfa, 10%)  混合后的颜色 background-color:average(#bfa, orange); 
+
+**视口**
+
+可以通过meta标签来设置视口的大小，可以通过修改视口的大小来改变像素比
+
+​			以iphone6 为例，视口大小如果设置375px
+
+​				它的物理像素是 750px
+
+​				像素比 375:750 = 1:2
+
+每一部手机都会存在一个最佳的像素比，
+
+​				当它像素比处在该值时，会有一个最佳的浏览效果
+
+​				但是由于机型不同，这个像素比例也不同
+
+​				比如：iPhone6的最佳像素比 1:2
+
+将手机的像素比设置为最佳像素比的视口大小，称为完美视口
+
+​			所以我们编写移动端的页面时第一件事就是要设置浏览器的完美视口
+
+​			
+
+**视口的设置只会影响移动设备，不会在pc端起作用**
+
+<meta name="viewport" content="width=device-width">
+
+meta:vp + tab 自动生成完美视口
+
+单位：vw
+
+1vw = 1%视口宽度，vw的参照物永远都是视口
+
+由于不同设备的视口大小不同，375px在不同的移动设备中所代表的意义也不同
+
+​						比如：
+
+​							在iphone6中，视口大小为375px，所以375px就是全屏的状态
+
+​							在iphone6 plus 视口大小为414px，所以375px会比全屏小一点
+
+​							在iphone5中，视口大小为320px，所以375px会超出屏幕，出现水平滚动条
+
+​						在写移动时，像素这个单位就基本上不能用了
+
+1vw = 1%视口宽度 vw的参照物永远都是视口
+
+​			以750的设计图为例
+
+​					100vw 相当于 750px
+
+100vw --> 750px
+
+0.13333vw --> 1px
+
+6.53333vw --> 49px
+
+4.66666vw --> 35px
+
+将 html 的字体大小 设置为 font-size: 0.13333vw;
+
+​						这样意味着 1rem = 0.13333vw
+
+​						1rem = 1font-size(html)
+
+​						1font-size(html) = 0.13333vw
+
+​						1rem = 0.13333vw
+
+​						0.13333vw = 1px(设计图)
+
+​						1rem = 1px(设计图)
+
+如果font-size不够12px，在老版本的chrome中会被重置为12px
+
+​					导致适配失败，必须要确保值要大于12px
+
+​					将vw值扩大40倍，得到5.333333
+
+​					由于在这里我们给font-size扩大了40倍，
+
+​					所以在使用rem，必须要让像素除以40
+
+在Chrome中，字体的大小最小0 表示没有，
+
+​					可显示的字体最小是12px，所以1-11px显示效果是一样的
+
+​					目前新版本的Chrome不会因为字体大小的问题影响到适配
+
+​					
+
+​					但是老版本Chrome，和一些移动端浏览器，
+
+​					会存在字体大小不能设置为12px以下的问题
+
+​					在这些浏览器如果将字体大小设置为12px以下时，浏览器会自动将其重置为12px
+
+**媒体查询（media query）**
+
+\- 通过媒体查询，可以根据用户使用设备的不同
+
+​			设置不同的样式
+
+​			- 使用 @media 来设置媒体查询	
+
+- 媒体类型：可以根据不同的媒体类型来设置不同的样式
+
+​			all 表示所有设备
+
+​			screen 表示有屏幕的设备
+
+​			print 表示打印设备
+
+​			speech 屏幕阅读器
+
+- 逻辑连接词- 可以使用一些符号来连接不同的特性
+
+​				, 表示 “或” 的意思
+
+​				and 表示 “且” 的意思
+
+​				not 表示 “非” 的意思
+
+​				only 表示 “只有，唯一” 的意思
+
+​				@media screen{} 和 @media only screen{}
+
+​					在意思上是一样的，但是 @media only screen{} 可以避免一些兼容性问题
+
+​								
+
+- 媒体的特性- 媒体特性指可以根据当前设备的状态来设置不同的样式
+
+​				- 例子：width 表示视口的宽度（不常用）
+
+ min-width 表示视口的最小宽度  - 相当于大于等于
+
+​					   max-width 表示视口的最大宽度- 相当于小于等于
+
+竖屏的样式(orientation:portrait)
+
+@media only screen and (orientation:portrait) { 			body{ 				background-color: #bfa; 			} 		} 
+
+横屏的样式(orientation:landscape)
+
+@media only screen and (orientation:landscape) { 			body{ 				background-color: pink; 			} 		} 
